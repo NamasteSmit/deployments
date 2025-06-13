@@ -1,4 +1,4 @@
-name: Deploy to Staging
+name: Deploy to Staging Server
 
 on:
   push:
@@ -20,20 +20,28 @@ jobs:
 
       - name: Install Dependencies
         run: npm install
+      - name: Generate Prisma Client
+        run: npx prisma generate --schema=packages/prisma/prisma/schema.prisma
+        env:
+             DATABASE_URL: ${{ secrets.DATABASE_URL }}
 
-      - name: Run Build
+      - working-directory: apps/web
         run: npm run build
+        env:
+            DATABASE_URL: ${{ secrets.DATABASE_URL }}
 
       - name: Deploy to Staging Server
         uses: appleboy/ssh-action@v1.0.0
         with:
-          host: ${{ secrets.STAGING_HOST }}
+          host: 13.233.133.46
           username: ubuntu
-          key: ${{ secrets.STAGING_SSH_KEY }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             cd /home/ubuntu/deployments
             git pull origin main
+            export PATH=/home/ubuntu/.nvm/versions/node/v22.16.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
             npm install
+            npm run build
             pm2 restart all
 
    
