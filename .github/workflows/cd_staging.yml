@@ -40,7 +40,9 @@ jobs:
           script: |
             cd /home/ubuntu/deployments
             git pull origin main
+            source ~/.bashrc
             npm install
+            npm run build
             pm2 restart all
 
    
