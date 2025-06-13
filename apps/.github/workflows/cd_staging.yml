@@ -20,6 +20,7 @@ jobs:
 
       - name: Install Dependencies
         run: npm install
+        
       - name: Generate Prisma Client
         run: npx prisma generate --schema=packages/prisma/prisma/schema.prisma
         env:
