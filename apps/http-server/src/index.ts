@@ -8,7 +8,7 @@ app.use(express.json())
 
 app.get('/' , (req , res)=>{
     res.send({
-        msg : "hi there"
+        msg : "hi there welcome from server"
     })
 })
 
