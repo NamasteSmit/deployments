@@ -27,9 +27,9 @@ jobs:
       - name: Deploy to Staging Server
         uses: appleboy/ssh-action@v1.0.0
         with:
-          host: ${{ secrets.STAGING_HOST }}
+          host: ${{ secrets.STAGING_KNOWN_HOSTS }}
           username: ubuntu
-          key: ${{ secrets.STAGING_SSH_KEY }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             cd /home/ubuntu/deployments
             git pull origin main
