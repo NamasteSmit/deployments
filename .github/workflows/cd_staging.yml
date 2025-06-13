@@ -26,7 +26,6 @@ jobs:
              DATABASE_URL: ${{ secrets.DATABASE_URL }}
 
       - name: Run Build
-        working-directory: apps/web
         run: npm run build
         env:
            DATABASE_URL: ${{ secrets.DATABASE_URL }}
