@@ -34,7 +34,7 @@ jobs:
       - name: Deploy to Staging Server
         uses: appleboy/ssh-action@v1.0.0
         with:
-          host: ${{ secrets.STAGING_KNOWN_HOSTS }}
+          host: 13.233.133.46
           username: ubuntu
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
