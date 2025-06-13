@@ -28,7 +28,7 @@ jobs:
       - name: Run Build
         run: npm run build
         env:
-           DATABASE_URL: ${{ secrets.DATABASE_URL }}
+           DATABASE_URL: "${{ secrets.DATABASE_URL }}"
 
       - name: Deploy to Staging Server
         uses: appleboy/ssh-action@v1.0.0
