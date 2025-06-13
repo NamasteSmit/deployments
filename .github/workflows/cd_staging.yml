@@ -40,7 +40,7 @@ jobs:
           script: |
             cd /home/ubuntu/deployments
             git pull origin main
-            source ~/.bashrc
+            export PATH=/home/ubuntu/.nvm/versions/node/v22.16.0/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
             npm install
             npm run build
             pm2 restart all
